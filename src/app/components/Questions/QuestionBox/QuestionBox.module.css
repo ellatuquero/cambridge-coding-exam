@@ -1,0 +1,23 @@
+.questionBox {
+    padding: 0;
+}
+.cardHeader {
+    background-color: #3168B0;
+    color: #fff;
+    font-size: 18px;
+}
+.optionBox {
+    margin: 20px 0;
+    cursor: pointer;
+}
+.footerContainer {
+    text-align: center;
+}
+.itemAlign {
+    display: inline-block;
+    vertical-align: text-top;
+}
+.nextBtn {
+    float: right;
+    cursor: pointer;
+}
