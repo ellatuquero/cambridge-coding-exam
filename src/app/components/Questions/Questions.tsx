@@ -36,16 +36,14 @@ const Questions = ({ questions }: QuestionTypeProp) => {
     const handleSubmitExam = () => {
         let userTotalScore = 0
         const questionAnswers = _.toArray(_.mapValues(currentQuestions, 'correctAnswer'))
-        const questionUserAnswers = userAnswers;
         questionAnswers.map((ans, i) => {
-            if(_.isEqual(ans, questionUserAnswers[i])) {
+            if(_.isEqual(ans, userAnswers[i])) {
                 userTotalScore += 1
             }
         })
-
+        console.log(userAnswers);
         setTotalScore(userTotalScore);
         setIsSubmittingExam(true)
-        
     };
 
     const currentQuestion = currentQuestions[currentQuestionIndex];
@@ -53,24 +51,22 @@ const Questions = ({ questions }: QuestionTypeProp) => {
     return (
         <Container className={styles.componentContainer}>
             <Row>
-            {
-                isSubmittingExam ? (
-                    <Result totalQuestionLength={_.size(questions)} totalScore={totalScore}/>
-                ) : (
-                    <QuestionBox
-                        questionLength={_.size(questions)}
-                        questionNumber={currentQuestionIndex + 1}
-                        instruction={currentQuestion.instruction}
-                        question={currentQuestion.question}
-                        options={currentQuestion.options}
-                        timeLimit={5}
-                        onSubmitExam={handleSubmitExam}
-                        onSubmitOption={handleSubmitOption}
-                    />
-                )
-            }
-        
-                
+                {
+                    isSubmittingExam ? (
+                        <Result totalQuestionLength={_.size(questions)} totalScore={totalScore}/>
+                    ) : (
+                        <QuestionBox
+                            questionLength={_.size(questions)}
+                            questionNumber={currentQuestionIndex + 1}
+                            instruction={currentQuestion.instruction}
+                            question={currentQuestion.question}
+                            options={currentQuestion.options}
+                            timeLimit={5}
+                            onSubmitExam={handleSubmitExam}
+                            onSubmitOption={handleSubmitOption}
+                        />
+                    )
+                }   
             </Row>
         </Container>
     );

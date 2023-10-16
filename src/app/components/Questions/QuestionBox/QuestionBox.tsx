@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash'
-import { Card, Col, Row } from 'react-bootstrap';
 import styles from './QuestionBox.module.css'
+import { Card, Col, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleRight, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import QuestionOption from './QuestionOption/QuestionOption';
-import Image from "next/image";
 
 type QuestionBoxTypeProp = {
     questionLength: number;
@@ -27,23 +28,30 @@ const QuestionBox = ({
     onSubmitExam,
 }: QuestionBoxTypeProp) => {
 
+    const [isLoadingQuestion, setIsLoadingQuestion] = useState(false);
     const [remainingTime, setRemainingTime] = useState(timeLimit);
     const [selectedOption, setSelectedOption] = useState('');
 
     useEffect(() => {
-        
-        const timer = setTimeout(() => {
-            if(remainingTime > 0) {
-                setRemainingTime(remainingTime - 1)
-            }else{
-                onSubmitOption('')
-            }
-        },1000);
-        
-        setSelectedOption('')
+        if(!isLoadingQuestion) {
+            const timer = setTimeout(() => {
+                if(remainingTime > 0) {
+                    setRemainingTime(remainingTime - 1)
+                }else{
+                    setSelectedOption('')
+                    onSubmitOption('')
+                    setRemainingTime(timeLimit)
 
-        return () => clearTimeout(timer)
-    }, [questionNumber, remainingTime]);
+                    if(questionNumber === questionLength) {
+                        onSubmitExam();
+                    }
+                }
+            },1000);
+
+            return () => clearTimeout(timer)
+        }
+        setIsLoadingQuestion(true)
+    }, [remainingTime]);
 
     const handleOptionSelect = (option : string) => {
         setSelectedOption(option);
@@ -52,6 +60,7 @@ const QuestionBox = ({
     const handleOptionSubmit = (answer : string) => {
         onSubmitOption(answer);
         setRemainingTime(timeLimit)
+        setSelectedOption('')
     };
 
     const handleExamSubmit = () => {
@@ -77,30 +86,28 @@ const QuestionBox = ({
             </Card.Body>
             <Card.Footer >
                 <div className={styles.footerContainer}>
-                    <div className={`${styles.itemAlign} ${styles.timer}`}>
+                    <div className={`${styles.itemAlignLeft} ${styles.timer}`}>
                         <p>Time Left: {remainingTime} seconds</p>
                     </div>
-                    <div className={styles.itemAlign}>
+                    <div className={styles.itemAlignCenter}>
                         <p className={styles.questionInfo}>{questionNumber} out of {questionLength}</p>
                     </div>
-                    <div className={`${styles.itemAlign} ${styles.nextBtn}`}>
+                    <div className={`${styles.itemAlignRight} ${styles.nextBtn}`}>
                         {
                             questionNumber === questionLength ? (
-                                <Image
+                                <FontAwesomeIcon 
+                                    size="2xl"
+                                    className={styles.iconLayout}
                                     onClick={() => handleExamSubmit()}
-                                    width={32}
-                                    height={32}
-                                    src="/submit-success.svg"
-                                    alt="
-                                    Arrow Right"
+                                    icon={faCheckCircle}  
                                 />
-                            ) : (
-                                <Image
+                            )
+                            : (
+                                <FontAwesomeIcon 
+                                    size="2xl"
+                                    className={`${styles.iconLayout} ${_.isEmpty(selectedOption) ? styles.iconInactive : ''}`}
                                     onClick={() => handleOptionSubmit(selectedOption)}
-                                    width={32}
-                                    height={32}
-                                    src="/arrow-right-circle.svg"
-                                    alt="Arrow Right"
+                                    icon={faArrowCircleRight} 
                                 />
                             )
                         }

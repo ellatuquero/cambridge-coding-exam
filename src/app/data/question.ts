@@ -46,7 +46,7 @@ export const QuestionList : QuestionTypes[] = [
         "instruction" : "Which word from the following sentence is an adverb?",
         "question": "Edward carefully placed the eggs on the wooden table.",
         "options": ["Edward", "carefully", "wooden", "placed"],
-        "correctAnswer": "Carefully",
+        "correctAnswer": "carefully",
         "timeLimit": 5
     },
     {

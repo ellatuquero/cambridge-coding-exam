@@ -105,3 +105,10 @@ a {
     color-scheme: dark;
   }
 }
+
+/** Override */
+.btn:hover {
+  color: #0a58ca;
+  background-color: transparent;
+  border-color: #0a58ca;
+}
