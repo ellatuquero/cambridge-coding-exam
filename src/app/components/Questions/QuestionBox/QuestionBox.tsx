@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash'
-import styles from './QuestionBox.module.css'
 import { Card, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleRight, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import styles from './QuestionBox.module.css'
 import QuestionOption from './QuestionOption/QuestionOption';
 
 type QuestionBoxTypeProp = {
@@ -59,8 +59,6 @@ const QuestionBox = ({
 
     const handleOptionSubmit = (answer : string) => {
         onSubmitOption(answer);
-        setRemainingTime(timeLimit)
-        setSelectedOption('')
     };
 
     const handleExamSubmit = () => {
@@ -97,7 +95,7 @@ const QuestionBox = ({
                             questionNumber === questionLength ? (
                                 <FontAwesomeIcon 
                                     size="2xl"
-                                    className={styles.iconLayout}
+                                    className={`${styles.iconLayout} ${_.isEmpty(selectedOption) ? styles.iconInactive : ''}`}
                                     onClick={() => handleExamSubmit()}
                                     icon={faCheckCircle}  
                                 />

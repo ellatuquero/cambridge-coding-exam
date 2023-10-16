@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
+import Link from 'next/link'
 import { Container, Row } from 'react-bootstrap'
+import { CourseList, CourseTypes } from '@/app/data/courses'
 import styles from './Result.module.css'
 import Courses from '../Courses/Courses'
-import { CourseList, CourseTypes } from '@/app/data/courses'
-import Link from 'next/link'
 
 type ResultTypeProp = {
     totalQuestionLength : number;

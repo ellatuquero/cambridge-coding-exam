@@ -1,3 +1,11 @@
 .componentContainer {
     padding: 80px 0;
 }
+.loadingContainer {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}

@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { QuestionTypes } from '@/app/data/question';
 import { Container, Row } from 'react-bootstrap';
-import QuestionBox from './QuestionBox/QuestionBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import styles from './Questions.module.css';
+import QuestionBox from './QuestionBox/QuestionBox';
 import Result from '../Result/Result';
 
 type QuestionTypeProp = {
@@ -17,8 +19,15 @@ const Questions = ({ questions }: QuestionTypeProp) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [userAnswers, setUserAnswers] = useState([] as string[]);
     const [totalScore, setTotalScore] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmittingExam, setIsSubmittingExam] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 1000)
+    }, [isLoading]);
 
     const handleSubmitOption = (answer: string) => {
         if (!isSubmitting) {
@@ -41,30 +50,46 @@ const Questions = ({ questions }: QuestionTypeProp) => {
                 userTotalScore += 1
             }
         })
-        console.log(userAnswers);
         setTotalScore(userTotalScore);
+        setIsLoading(true)
         setIsSubmittingExam(true)
     };
 
-    const currentQuestion = currentQuestions[currentQuestionIndex];
+    const renderLoading = () => {
+        return (
+            <div className={styles.loadingContainer} >
+                <FontAwesomeIcon 
+                    size="2xl"
+                    icon={faSpinner} 
+                    spin={true}
+                />
+            </div>
+        )
+    }
 
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+  
     return (
         <Container className={styles.componentContainer}>
             <Row>
                 {
-                    isSubmittingExam ? (
-                        <Result totalQuestionLength={_.size(questions)} totalScore={totalScore}/>
-                    ) : (
-                        <QuestionBox
-                            questionLength={_.size(questions)}
-                            questionNumber={currentQuestionIndex + 1}
-                            instruction={currentQuestion.instruction}
-                            question={currentQuestion.question}
-                            options={currentQuestion.options}
-                            timeLimit={5}
-                            onSubmitExam={handleSubmitExam}
-                            onSubmitOption={handleSubmitOption}
-                        />
+                    isLoading ?  renderLoading()
+                    : (
+                        isSubmittingExam ? (
+                            isLoading ? renderLoading() :
+                            <Result totalQuestionLength={_.size(questions)} totalScore={totalScore}/>
+                        ) : (
+                            <QuestionBox
+                                questionLength={_.size(questions)}
+                                questionNumber={currentQuestionIndex + 1}
+                                instruction={currentQuestion.instruction}
+                                question={currentQuestion.question}
+                                options={currentQuestion.options}
+                                timeLimit={currentQuestion.timeLimit}
+                                onSubmitExam={handleSubmitExam}
+                                onSubmitOption={handleSubmitOption}
+                            />
+                        )
                     )
                 }   
             </Row>
