@@ -1,28 +1,34 @@
 
 export type CourseTypes = {
-    courseName : string;
-    description : string;
+    courseName: string;
+    description: string;
+    recommendedType?: string;
 }
 
 export const CourseList : CourseTypes[] = [
     {
         courseName : "B2",
-        description : "First"
+        description : "First",
+        recommendedType : "Low"
     },
     {
         courseName : "C1",
-        description : "Advanced"
+        description : "Advanced",
+        recommendedType : "Low"
     },
     {
         courseName : "B2",
-        description : "First for Schools"
+        description : "First for Schools",
+        recommendedType : "Average"
     },
     {
         courseName : "B1",
-        description : "Preliminary for Schools"
+        description : "Preliminary for Schools",
+        recommendedType : "High"
     },
     {
         courseName : "A2",
-        description : "Key for Schools"
+        description : "Key for Schools",
+        recommendedType : "High"
     }
 ];

@@ -4,3 +4,37 @@
     max-width: 100%;
     width: var(--max-width);
 }
+
+/* Mobile */
+@media (max-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr;
+      margin-bottom: 120px;
+      max-width: 320px;
+      text-align: center;
+    }
+  
+    .card {
+      padding: 1rem 2.5rem;
+    }
+  
+    .card h2 {
+      margin-bottom: 0.5rem;
+    }
+  
+    .center {
+      padding: 8rem 0 6rem;
+    }
+  
+    .center::before {
+      transform: none;
+      height: 300px;
+    }
+}
+  
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+    .grid {
+        grid-template-columns: repeat(2, 50%);
+    }
+}

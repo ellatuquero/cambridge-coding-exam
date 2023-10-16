@@ -17,6 +17,9 @@
     display: inline-block;
     vertical-align: text-top;
 }
+.timer {
+    float: left;
+}
 .nextBtn {
     float: right;
     cursor: pointer;
