@@ -4,6 +4,7 @@
     padding: 1rem 1.2rem;
     border-radius: var(--border-radius);
     transition: background 200ms, border 200ms;
+    margin: 10px auto;
 }
 
 

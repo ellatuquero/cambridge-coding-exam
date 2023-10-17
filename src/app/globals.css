@@ -112,6 +112,9 @@ a {
   background-color: transparent;
   border-color: #0a58ca;
 }
+.navbar-nav {
+  padding: 0px 10px;
+}
 .nav-link:hover {
   color: #d7d7d7;
 }
