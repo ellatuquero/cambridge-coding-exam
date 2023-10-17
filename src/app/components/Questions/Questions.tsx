@@ -53,7 +53,6 @@ const Questions = ({ questions }: QuestionTypeProp) => {
         setTotalScore(userTotalScore);
         setIsLoading(true)
         setIsSubmittingExam(true)
-        console.log(userAnswers);
     };
 
     const renderLoading = () => {
