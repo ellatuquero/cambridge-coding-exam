@@ -50,8 +50,9 @@ const QuestionBox = ({
 
             return () => clearTimeout(timer)
         }
+        setSelectedOption('')
         setIsLoadingQuestion(true)
-    }, [remainingTime]);
+    }, [questionNumber, remainingTime]);
 
     const handleOptionSelect = (option : string) => {
         setSelectedOption(option);
@@ -59,6 +60,7 @@ const QuestionBox = ({
 
     const handleOptionSubmit = (answer : string) => {
         onSubmitOption(answer);
+        setRemainingTime(timeLimit)
     };
 
     const handleExamSubmit = () => {

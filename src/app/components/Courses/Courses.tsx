@@ -15,7 +15,7 @@ const Courses = ({
     courseList
 }: CourseTypeProp) => {
   return (
-    <Container>
+    <Container data-testid='courseSectionContainer'>
         <Row className='text-center mb-5'>
             <h1>{headerText}</h1>
         </Row>

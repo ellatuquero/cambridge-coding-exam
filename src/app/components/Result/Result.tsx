@@ -51,7 +51,7 @@ const Result = ({ totalQuestionLength, totalScore } : ResultTypeProp )  => {
         <Container className={styles.resultContainer}>
             <Row>
                 <h1>Exam Result</h1>
-                <h4>{totalScore} of {totalQuestionLength} questions answered correctly</h4>
+                <h5>{totalScore} of {totalQuestionLength} questions answered correctly</h5>
             </Row>
             <Row className='mt-5 mb-5'>
                 <div className={styles.btnContainer}>
