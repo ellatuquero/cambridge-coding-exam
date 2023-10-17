@@ -33,7 +33,13 @@ const QuestionBox = ({
     const [selectedOption, setSelectedOption] = useState('');
 
     useEffect(() => {
+        setSelectedOption('')
+        setRemainingTime(timeLimit)
+    }, [questionNumber]);
+
+    useEffect(() => {
         if(!isLoadingQuestion) {
+           
             const timer = setTimeout(() => {
                 if(remainingTime > 0) {
                     setRemainingTime(remainingTime - 1)
@@ -50,9 +56,9 @@ const QuestionBox = ({
 
             return () => clearTimeout(timer)
         }
-        setSelectedOption('')
+
         setIsLoadingQuestion(true)
-    }, [questionNumber, remainingTime]);
+    }, [remainingTime]);
 
     const handleOptionSelect = (option : string) => {
         setSelectedOption(option);
@@ -60,7 +66,6 @@ const QuestionBox = ({
 
     const handleOptionSubmit = (answer : string) => {
         onSubmitOption(answer);
-        setRemainingTime(timeLimit)
     };
 
     const handleExamSubmit = () => {

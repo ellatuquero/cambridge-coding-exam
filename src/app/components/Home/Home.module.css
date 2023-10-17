@@ -1,3 +1,10 @@
 .upper {
     text-align: center;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .upper {
+        padding: 0 30px;
+    }
+}
