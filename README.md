@@ -1,3 +1,26 @@
+## Cambridge Coding Exam
+This repository contains a Next.js application written in TypeScript that includes unit tests implemented with Jest and React Testing Library. 
+This application is prepared for the cambridge. A basic prototype featuring a timed multiple-choice quiz, supplemented with user score-based course recommendations.
+
+## Prerequisites
+Make sure you have `NPM` installed on your system.
+
+## Getting Started
+1. Clone the repository:
+> git clone https://github.com/ellatuquero/cambridge-coding-exam.git
+2. Navigate to the project directory:
+> cd cambridge-coding-exam
+3. Install dependencies using Yarn:
+> npm install
+
+## Running Tests
+Jest is used for testing. To run tests, use the following command:
+> npm run test
+
+#### Developer:
+- Ella Tuquero
+
+## README from Next.js
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
