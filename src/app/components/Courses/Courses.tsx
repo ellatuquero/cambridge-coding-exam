@@ -23,7 +23,7 @@ const Courses = ({
             className={styles.grid}
         >
             {courseList.map((courseObj, index) => (
-                <CourseCard courseName={courseObj.courseName} description={courseObj.description} />
+                <CourseCard key={index} courseName={courseObj.courseName} description={courseObj.description} />
             ))}
         </Row>
     </Container>
